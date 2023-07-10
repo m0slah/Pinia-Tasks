@@ -14,7 +14,7 @@
 
     <!-- task-list -->
     <div class="task-list" v-if="filter === 'all'">
-      <p>All Tasks</p>
+      <p>You have {{taskStore.totalCount }} left  to do</p>
       <div v-for="task in taskStore.tasks">
         <TaskDetails :task="task" />
       </div>
@@ -22,7 +22,7 @@
 
     <!-- Favourites-list -->
     <div class="task-list" v-if="filter === 'favourite'">
-      <p>Favourites Tasks</p>
+      <p>You have {{taskStore.FavouriteCount }} left  to do</p>
       <div v-for="task in taskStore.Favourite">
         <TaskDetails :task="task" />
       </div>
