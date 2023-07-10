@@ -6,14 +6,21 @@ export const useTaskStore = defineStore("taskStore", {
       {
         id: 1,
         title: "buy some milk",
-        isFav: false,
+        isFavourite: false,
       },
       {
         id: 2,
         title: "play Gloomhaven ",
-        isFav: true,
+        isFavourite: true,
       },
     ],
     name: "Yoshi",
   }),
+
+  getters: {
+    // Favourits-function
+    Favourite() {
+      return this.tasks.filter((task) => task.isFavourite);
+    },
+  },
 });

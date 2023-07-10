@@ -8,8 +8,17 @@
 
     <!-- task-list -->
     <div class="task-list">
+      <p>All Tasks</p>
       <div v-for="task in taskStore.tasks">
-        <TaskDetails :task="task"/>
+        <TaskDetails :task="task" />
+      </div>
+    </div>
+
+    <!-- Favourites-list -->
+    <div class="task-list">
+      <p>Favourites Tasks</p>
+      <div v-for="task in taskStore.Favourite">
+        <TaskDetails :task="task" />
       </div>
     </div>
 
@@ -18,12 +27,12 @@
 </template>
 
 <script>
-import TaskDetails from './components/TaskDetails.vue'
+import TaskDetails from "./components/TaskDetails.vue";
 import { useTaskStore } from "./stores/TaskStore";
 
 export default {
   components: {
-    TaskDetails
+    TaskDetails,
   },
   setup() {
     const taskStore = useTaskStore();
