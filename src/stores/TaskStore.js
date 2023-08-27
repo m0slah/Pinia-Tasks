@@ -1,35 +1,37 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia'
 
-export const useTaskStore = defineStore("taskStore", {
+export const useTaskStore = defineStore('taskStore', {
   state: () => ({
     tasks: [
-      {
-        id: 1,
-        title: "buy some milk",
-        isFavourite: false,
-      },
-      {
-        id: 2,
-        title: "play Gloomhaven ",
-        isFavourite: true,
-      },
-    ],
-    name: "Yoshi",
+      {id: 1, title: "buy some milk", isFav: false},
+      {id: 2, title: "play Gloomhaven", isFav: true}
+    ]
   }),
-
   getters: {
-    // Favourits-function
-    Favourite() {
-      return this.tasks.filter((task) => task.isFavourite);
+    favs() {
+      return this.tasks.filter(t => t.isFav)
     },
-
-    FavouriteCount() {
-      return this.tasks.reduce((previousValue, currentValue) => {
-        return currentValue.isFavourite ? previousValue + 1 : previousValue;
-      }, 0);
+    favCount() {
+      return this.tasks.reduce((p, c) => {
+        return c.isFav ? p + 1 : p
+      }, 0)
     },
     totalCount: (state) => {
       return state.tasks.length
     }
   },
-});
+  actions: {
+    addTask(task) {
+      this.tasks.push(task)
+    },
+    deleteTask(id) {
+      this.tasks = this.tasks.filter(t => {
+        return t.id !== id
+      })
+    },
+    toggleFav(id) {
+      const task = this.tasks.find(t => t.id === id)
+      task.isFav = !task.isFav
+    }
+  }
+})
